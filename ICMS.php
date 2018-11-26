@@ -1,8 +1,14 @@
 <?php
-class ICMS implements Imposto {
+class ICMS extends TemplateDeImpostoCondicional {
+	public function deveUsarOMaximo(Orcamento $orcamento){
+		return $orcamento->getValor() > 500;
+	}
 
-          public function calcula(Orcamento $orcamento) {
-              return $orcamento->getValor() * 0.05 + 50;
-          }
+	public function taxacaoMinima(Orcamento $orcamento) {
+		return $orcamento->getValor() * 0.05;
+	}
 
-      }
+	public function taxacaoMaxima(Orcamento $orcamento) {
+		return $orcamento->getValor() * 0.15;
+	}
+}

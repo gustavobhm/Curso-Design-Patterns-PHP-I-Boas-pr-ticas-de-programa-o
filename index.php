@@ -1,5 +1,6 @@
 <?php
 	require "Imposto.php";
+	require "TemplateDeImpostoCondicional.php";
 	require "Orcamento.php";
 	require "CalculadoraDeImpostos.php";
 	require "ICMS.php";
