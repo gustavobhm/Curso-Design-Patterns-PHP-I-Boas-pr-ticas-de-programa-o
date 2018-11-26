@@ -1,29 +1,41 @@
 <?php
+	require "Item.php";
+	require "Desconto.php";
+	require "DescontoPorVendaCasada.php";
+	require "DescontoPorCincoItens.php";
+	require "DescontoPorMaisDeQuinhentosReais.php";
+	require "SemDesconto.php";
 	require "Imposto.php";
 	require "TemplateDeImpostoCondicional.php";
 	require "Orcamento.php";
 	require "CalculadoraDeImpostos.php";
+	require "ImpostoMuitoAlto.php";
 	require "ICMS.php";
 	require "ISS.php";
 	require "KCV.php";
 	require "ICCC.php";
+	require "EstadoDeUmOrcamento.php";
+	require "Aprovado.php";
+	require "EmAprovacao.php";
+	require "Reprovado.php";
+	require "Finalizado.php";
 
-	$reforma = new Orcamento(500);
+	$reforma = new Orcamento(490);
 
-	$calculadora = new CalculadoraDeImpostos();
+	echo $reforma->getValor()."<br />";
 
-	echo $calculadora->calcula($reforma,new ICMS());
+	$reforma->aplicaDesconto();
 
-	echo "<br/>";
+	echo $reforma->getValor()."<br />";
 
-	echo $calculadora->calcula($reforma,new ISS());
+	$reforma->aprova();
 
-	echo "<br/>";
+	$reforma->aplicaDesconto();
 
-	echo $calculadora->calcula($reforma,new KCV());
+	echo $reforma->getValor()."<br />";
 
-	echo "<br/>";
+	$reforma->finaliza();
 
-	$novoImposto = new ICCC();
+	$reforma->aplicaDesconto();
 
-	echo $novoImposto->calcula($reforma);
+	echo $reforma->getValor()."<br />";
